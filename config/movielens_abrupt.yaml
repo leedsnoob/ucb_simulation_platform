@@ -1,0 +1,28 @@
+experiment_name: "ML-Sim-Abrupt"
+dataset: "movielens"
+horizon: 100000
+num_runs: 3
+results_dir: "results/"
+
+drift_type: "abrupt"
+
+algorithms:
+  - name: "UCB1"
+    params: { alpha: 4.0 }
+  - name: "UCB_D"
+    params: { alpha: 4.0, gamma: 0.9999 }
+  - name: "UCB_SW"
+    params: { alpha: 4.0}
+  - name: "FDSW_UCB"
+    class: "FDSW_UCB"
+    params: { name: "FDSW_mean", alpha: 4.0, gamma: 0.9999,agg_function: 'max' }
+
+drift_config:
+  - type: "swap_extremes"
+    position: 30000  
+  - type: "swap_extremes"
+    position: 45000   
+  - type: "swap_extremes"
+    position: 60000   
+  - type: "swap_extremes"
+    position: 90000  

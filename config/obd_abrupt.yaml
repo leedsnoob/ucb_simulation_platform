@@ -1,0 +1,37 @@
+experiment_name: "OBD-Sim-Abrupt"
+dataset: "obd"
+horizon: 1000000
+num_runs: 3
+results_dir: "results/"
+seed: 42
+
+handler_params:
+  policy: "random"
+
+drift_type: "abrupt"
+
+algorithms:
+  - name: "UCB1"
+    class: "UCB1"
+    params: { alpha: 1.0 }
+  
+  # --- UCB_D with different gamma values for comparison ---
+  - name: "UCB_D_gamma_0.9999"
+    class: "UCB_D"
+    params: { alpha: 1.0, gamma: 0.999 }
+  # --- SW-UCB and FDSW-UCB will now use dynamic window size ---
+  - name: "UCB_SW"
+    class: "UCB_SW"
+    params: { alpha: 1.0 }
+
+  - name: "FDSW_UCB"
+    class: "FDSW_UCB"
+    params: { name: "FDSW_mean", alpha: 1.0, gamma: 0.9999, agg_function: 'max' }
+
+drift_config:
+  - type: "swap_extremes"
+    position: 300000
+  - type: "swap_extremes"
+    position: 600000  
+  - type: "swap_extremes"
+    position: 900000  

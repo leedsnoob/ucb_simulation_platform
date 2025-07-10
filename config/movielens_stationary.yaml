@@ -1,0 +1,20 @@
+experiment_name: "ML-Sim-Stationary"
+dataset: "movielens"
+horizon: 1000000
+num_runs: 3
+results_dir: "results/"
+
+drift_type: "stationary"
+
+algorithms:
+  - name: "UCB1"
+    params: { alpha: 1.0 }
+  - name: "UCB_D"
+    params: { alpha: 1.0, gamma: 0.999 }
+  - name: "UCB_SW"
+    params: { alpha: 1.0, window_size: 20000 }
+  - name: "FDSW_UCB"
+    class: "FDSW_UCB"
+    params: { name: "FDSW_mean", alpha: 1.0, gamma: 0.999, window_size: 20000, agg_function: 'mean' }
+
+drift_config: {} 

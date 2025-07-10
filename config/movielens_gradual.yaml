@@ -1,0 +1,23 @@
+experiment_name: "ML-Sim-Gradual"
+dataset: "movielens"
+horizon: 100
+num_runs: 3
+results_dir: "results/"
+
+drift_type: "gradual"
+
+algorithms:
+  - name: "UCB1"
+    params: { alpha: 4.0 }
+  - name: "UCB_D"
+    params: { alpha: 4.0, gamma: 0.98 }
+  - name: "UCB_SW"
+    params: { alpha: 4.0, window_size: 20000 }
+  - name: "FDSW_UCB"
+    class: "FDSW_UCB"
+    params: { name: "FDSW_mean", alpha: 4.0, gamma: 0.98, window_size: 20000, agg_function: 'mean' }
+
+drift_config:
+  - type: "gradual_linear"
+    start: 10
+    duration: 10 

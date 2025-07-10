@@ -1,0 +1,27 @@
+experiment_name: "OBD-Sim-Gradual"
+dataset: "obd"
+horizon: 50000
+num_runs: 3
+results_dir: "results/"
+seed: 42
+
+handler_params:
+  policy: "random"
+
+drift_type: "gradual"
+
+algorithms:
+  - name: "UCB1"
+    params: { alpha: 1.0 }
+  - name: "UCB_D"
+    params: { alpha: 1.0, gamma: 0.99 }
+  - name: "UCB_SW"
+    params: { alpha: 1.0, window_size: 2000 }
+  - name: "FDSW_UCB"
+    class: "FDSW_UCB"
+    params: { name: "FDSW_mean", alpha: 1.0, gamma: 0.99, window_size: 2000, agg_function: 'mean' }
+
+drift_config:
+  - type: "gradual_linear"
+    start: 15000
+    duration: 10000 
