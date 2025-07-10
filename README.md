@@ -131,12 +131,8 @@ python ucb_simulation_platform/evaluate.py --config ucb_simulation_platform/conf
 脚本会生成两张图（累积遗憾图、滚动奖励图）保存在 `figures/` 目录下，并在终端打印出最终性能的Markdown表格。
 
 ## 6. 附录：验证脚本参数
-| 脚本文件 | HORIZON | DRIFT_POINT / START | DURATION | N_CLUSTERS |
-| :--- | :--- | :--- | :--- | :--- |
-| `verify_drift.py` | 20000 | 10000 | N/A | 9 |
-| `verify_gradual_drift.py`| 30000 | 10000 | 5000 | 9 |
-| `verify_obd_drift.py` | 5000 | 2500 | N/A | N/A |
-| `verify_obd_gradual_drift.py`| 5000 | 2000 | 1000 | N/A |
+请你阅读yaml文件
+
 
 ## 7. 重构路线图与致谢
 1.  **[已完成]** 确定 K=9 作为 MovieLens 用户聚类的臂数。
